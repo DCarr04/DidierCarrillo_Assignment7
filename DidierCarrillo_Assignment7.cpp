@@ -5,3 +5,12 @@
 #include <cppconn/exception.h>
 
 #include <iostream>
+
+sql::mysql::MySQL_Driver *driver;
+sql::Connection *con; //to establish connection
+sql::Statement *stmt; //to execute SQL statement
+driver = sql::mysql::get_mysql_driver_instance();
+con = driver->connect("mysql.eecs.ku.edu", "348s25_d020c696", "aek4Thai");
+stmt = con->createStatement();
+//your MySQL database is named the same as your username
+stmt->execute("USE" 348s25_d020c696);
