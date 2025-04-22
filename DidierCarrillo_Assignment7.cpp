@@ -15,7 +15,7 @@ stmt = con->createStatement();
 //your MySQL database is named the same as your username
 stmt->execute("USE" 348s25_d020c696);
 
-stmt->execute("SELECT * FROM Student WHERE Student.StdMajor = "IS"");
+stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS"");
 
 
 delete stmt;
