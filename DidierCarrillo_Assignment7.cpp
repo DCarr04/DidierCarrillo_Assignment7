@@ -14,3 +14,10 @@ con = driver->connect("mysql.eecs.ku.edu", "348s25_d020c696", "aek4Thai");
 stmt = con->createStatement();
 //your MySQL database is named the same as your username
 stmt->execute("USE" 348s25_d020c696);
+
+stmt->execute()
+
+
+delete stmt;
+delete con;
+delete con;
