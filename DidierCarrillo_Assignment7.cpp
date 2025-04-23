@@ -17,6 +17,8 @@ stmt->execute("USE" 348s25_d020c696);
 
 stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS"");
 
+stmt->execute("SELECT FacFirstName, FacLastName FROM Faculty WHERE Faculty.FacDept = "PHY";")
+
 
 delete stmt;
 delete con;
