@@ -31,7 +31,16 @@ stmt->execute("SELECT count(FacHireDate), FacDept
     WHERE FacDept = "PHY" 
     HAVING COUNT(2019-08-26 - FacHireDate) > 5");
 
-stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC");
+int a = 0;
+res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC");
+while(res->next()){
+    if(a == 1){
+        cout << res->getString("stdGPA") << endl;
+    }
+    a++;
+}
+
+res = stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC");
 for(int i = 0; i < 3; i++){
     std::cout << res->getString("FacFirstName") << res->getString("FacLastName") << res->getString("FacSalary") << std::endl;
 }
