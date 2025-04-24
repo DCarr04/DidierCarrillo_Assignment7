@@ -16,23 +16,19 @@ stmt = con->createStatement();
 //your MySQL database is named the same as your username
 stmt->execute("USE" 348s25_d020c696);
 
-stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS"");
+stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS";");
 
-stmt->execute("SELECT s.StdFirstName, s.StdLastName FROM Student s
-JOIN (
-    SELECT StdNo, COUNT(DISTINCT OfferNo) AS course_count
-    FROM Enrollment
-    GROUP BY StdNo
-    HAVING COUNT(DISTINCT OfferNo) > 2
-) e ON s.StdNo = e.StdNo");
+//
+stmt->execute("SELECT s.StdFirstName, s.StdLastName FROM Student s JOIN (SELECT StdNo, COUNT(DISTINCT OfferNo) AS course_count FROM Enrollment GROUP BY StdNo HAVING COUNT(DISTINCT OfferNo) > 2) e ON s.StdNo = e.StdNo;");
 
-stmt->execute("SELECT count(FacHireDate), FacDept 
-    FROM Faculty 
-    WHERE FacDept = "PHY" 
-    HAVING COUNT(2019-08-26 - FacHireDate) > 5");
+//
+
+stmt->execute("SELECT count(FacHireDate), FacDept FROM Faculty WHERE FacDept = "PHY" HAVING COUNT(2019-08-26 - FacHireDate) > 5;");
+
+//
 
 int a = 0;
-res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC");
+res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC;");
 while(res->next()){
     if(a == 1){
         std::cout << res->getString("stdGPA") << std::endl;
@@ -40,7 +36,8 @@ while(res->next()){
     a++;
 }
 
-res = stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC");
+//
+res = stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC;");
 for(int i = 0; i < 3; i++){
     std::cout << res->getString("FacFirstName") << res->getString("FacLastName") << res->getString("FacSalary") << std::endl;
 }
