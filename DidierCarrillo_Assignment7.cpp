@@ -35,7 +35,7 @@ int a = 0;
 res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC");
 while(res->next()){
     if(a == 1){
-        cout << res->getString("stdGPA") << endl;
+        std::cout << res->getString("stdGPA") << std::endl;
     }
     a++;
 }
