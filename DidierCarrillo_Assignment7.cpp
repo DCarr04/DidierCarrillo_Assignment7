@@ -9,6 +9,7 @@
 sql::mysql::MySQL_Driver *driver;
 sql::Connection *con; //to establish connection
 sql::Statement *stmt; //to execute SQL statement
+sql::ResultSet *res;
 driver = sql::mysql::get_mysql_driver_instance();
 con = driver->connect("mysql.eecs.ku.edu", "348s25_d020c696", "aek4Thai");
 stmt = con->createStatement();
@@ -30,6 +31,11 @@ stmt->execute("SELECT count(FacHireDate), FacDept
     WHERE FacDept = "PHY" 
     HAVING COUNT(2019-08-26 - FacHireDate) > 5");
 
+stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC");
+for(int i = 0; i < 3; i++){
+    std::cout << res->getString("FacFirstName") << res->getString("FacLastName") << res->getString("FacSalary") << std::endl;
+}
+delete res;
 delete stmt;
 delete con;
 delete con;
