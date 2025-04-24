@@ -17,6 +17,14 @@ stmt->execute("USE" 348s25_d020c696);
 
 stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS"");
 
+stmt->execute("SELECT s.StdFirstName, s.StdLastName FROM Student s
+JOIN (
+    SELECT StdNo, COUNT(DISTINCT OfferNo) AS course_count
+    FROM Enrollment
+    GROUP BY StdNo
+    HAVING COUNT(DISTINCT OfferNo) > 2
+) e ON s.StdNo = e.StdNo");
+
 stmt->execute("SELECT FacFirstName, FacLastName FROM Faculty WHERE Faculty.FacDept = "PHY";")
 
 
