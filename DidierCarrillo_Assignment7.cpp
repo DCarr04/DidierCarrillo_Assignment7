@@ -25,8 +25,10 @@ JOIN (
     HAVING COUNT(DISTINCT OfferNo) > 2
 ) e ON s.StdNo = e.StdNo");
 
-stmt->execute("SELECT FacFirstName, FacLastName FROM Faculty WHERE Faculty.FacDept = "PHY";")
-
+stmt->execute("SELECT count(FacHireDate), FacDept 
+    FROM Faculty 
+    WHERE FacDept = "PHY" 
+    HAVING COUNT(2019-08-26 - FacHireDate) > 5");
 
 delete stmt;
 delete con;
