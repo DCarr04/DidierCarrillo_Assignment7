@@ -128,7 +128,10 @@ for(int i = 0; i < 3; i++){ //for loop will go through the first three lines of 
     std::cout << res->getString("FacFirstName") << res->getString("FacLastName") << res->getString("FacSalary") << std::endl; //prints faculty member's first and last name and their salary
 } //end of for loop
 
-//
+//inserts into Student table
+//Alice Smith from Topeka,KS, 66610 who is a JR and a CS major with a GPA of 3.85
+stmt->execute("INSERT INTO Student(StdNo, StdFirstName, StdLastName, StdCity, StdState, StdZip, StdClass, StdMajor, StdGPA) VALUES('888-88-8888', 'Alice', 'Smith', 'Topeka', 'KS', '66610', 'JR', 'CS', 3.85);");
+stmt->execute("SELECT * FROM Student;"); //displays all information in Student table
 
 
 delete res; //deletes res pointer
