@@ -31,6 +31,7 @@ stmt->execute("SELECT s.StdFirstName, s.StdLastName \
 //counts each OfferNo once from the Enrollment table
 //Groups the joined table by StdNo 
 //where the OfferNo counted was > 2 and Student StdNo equaled the Enrollment StdNo
+//This query was Sourced from Deepseek AI; I wasn't sure how to use JOIN
 stmt->execute("SELECT s.StdFirstName, s.StdLastName \
     FROM Student s \
     JOIN ( \
@@ -71,6 +72,7 @@ stmt->execute("SELECT f.FacFirstName, f.FacLastName \
 //joins table c with Offering table o by shared column CourseNo
 //joins table o with Faculty table f by shared column FacNo
 //where the course description contains the word data and the proffesor last name is 'Johnson'
+//This query was sourced from Deepseek AI; I hadn't figured how to layer/do multiple JOIN commands
 stmt->execute("SELECT c.CourseNo, c.CrsDesc \
     FROM Course c \
     JOIN Offering o ON c.CourseNo = o.CourseNo \
