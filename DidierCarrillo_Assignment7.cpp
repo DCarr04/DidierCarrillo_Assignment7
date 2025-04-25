@@ -46,10 +46,20 @@ stmt->execute("SELECT count(FacHireDate), FacDept \
 
 //
 stmt->execute("SELECT c.CourseNo, c.CrsDesc AS CourseName \
-FROM Course c \
-JOIN Offering o ON c.CourseNo = o.CourseNo \
-JOIN Faculty f ON o.FacNo = f.FacNo \
-WHERE c.CrsDesc LIKE '%Data%' AND f.FacLastName = 'Johnson';")
+    FROM Course c \
+    JOIN Offering o ON c.CourseNo = o.CourseNo \
+    JOIN Faculty f ON o.FacNo = f.FacNo \
+    WHERE c.CrsDesc LIKE '%Data%' AND f.FacLastName = 'Johnson';")
+//
+stmt->execute("SELECT s.StdFirstName, s.StdLastName \
+    FROM Student s \
+    WHERE s.StdNo NOT IN ( \
+        SELECT DISTINCT e.StdNo \
+        FROM Enrollment e \
+        JOIN Offering o ON e.OfferNo = o.OfferNo \
+        WHERE \
+            (o.OffYear = 2020 AND o.OffTerm IN ('SPRING', 'SUMMER')) -- Most recent two semesters in sample data \
+    );");
 //
 int a = 0;
 res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC;");
@@ -58,13 +68,13 @@ while(res->next()){
         std::cout << res->getString("stdGPA") << std::endl;
     }
     a++;
-}
+};
 
 //
 res = stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC;");
 for(int i = 0; i < 3; i++){
     std::cout << res->getString("FacFirstName") << res->getString("FacLastName") << res->getString("FacSalary") << std::endl;
-}
+};
 delete res;
 delete stmt;
 delete con;
