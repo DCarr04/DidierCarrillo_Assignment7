@@ -1,3 +1,15 @@
+/*
+-DidierCarrillo_Assignment7
+-Executes SQL queries using database 348s25_d020c696. 
+ The database includes tables: Student, Course, Enrollment, Offering, and Faculty.
+ Most of the queries are about selecting/displaying elements from the tables above that fit into
+ specific parameters. There is an insertion and an update query as well.
+-Inputs: 348s25_d020c696 tables: Student, Course, Enrollment, Offering, and Faculty
+-Outputs: SQL query results(or nothing if no elements fitting the parameters can be found)
+-Collaborators: Dr. David Johnson('RBD Coding(MySQL & C++)' slides), Deepseek AI
+-Didier Carrillo
+-April 20, 2024
+*/
 #include <mysql_driver.h>
 #include <mysql_connection.h>
 #include <cppconn/statement.h>
