@@ -5,17 +5,16 @@
 #include <cppconn/exception.h>
 #include <libmysqlcppconn.lib>
 
-#include <iostream>
+#include <iostream> //to use output and input
 
-sql::mysql::MySQL_Driver *driver;
+sql::mysql::MySQL_Driver *driver; //MySQL_Driver which provides an interface
 sql::Connection *con; //to establish connection
 sql::Statement *stmt; //to execute SQL statement
-sql::ResultSet *res;
-driver = sql::mysql::get_mysql_driver_instance();
-con = driver->connect("mysql.eecs.ku.edu", "348s25_d020c696", "aek4Thai");
-stmt = con->createStatement();
-//your MySQL database is named the same as your username
-stmt->execute("USE" 348s25_d020c696);
+sql::ResultSet *res; //to store the results of the executeQuery statements
+driver = sql::mysql::get_mysql_driver_instance(); //sets druver to instance of driver to get connection
+con = driver->connect("mysql.eecs.ku.edu", "348s25_d020c696", "aek4Thai"); //to connect driver pointer to database on the cycle servers
+stmt = con->createStatement(); //to connect stmt to database and send commands
+stmt->execute("USE" 348s25_d020c696); //"USE" command to access my database which is named like my username
 
 stmt->execute("SELECT StdFirstName, StdLastName \
     FROM Student \
@@ -57,8 +56,7 @@ stmt->execute("SELECT s.StdFirstName, s.StdLastName \
         SELECT DISTINCT e.StdNo \
         FROM Enrollment e \
         JOIN Offering o ON e.OfferNo = o.OfferNo \
-        WHERE \
-            (o.OffYear = 2020 AND o.OffTerm IN ('SPRING', 'SUMMER')) -- Most recent two semesters in sample data \
+        WHERE (o.OffYear = 2020 AND o.OffTerm IN ('SPRING', 'SUMMER')) -- Most recent two semesters in sample data \
     );");
 //
 int a = 0;
@@ -70,6 +68,13 @@ while(res->next()){
     a++;
 };
 
+//
+stmt->execute("SELECT s.StdFirstName, s.StdLastName \
+    FROM Student s \
+    JOIN Faculty f ON s.StdNo = f.FacNo \
+    WHERE s.StdGPA > 3.5;");
+//
+stmt->execute("");
 //
 res = stmt->executeQuery("SELECT FacFirstName, FacLastName, FacSalary FROM Faculty ORDER BY FacSalary DESC;");
 for(int i = 0; i < 3; i++){
