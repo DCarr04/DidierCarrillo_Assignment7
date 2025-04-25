@@ -131,7 +131,6 @@ for(int i = 0; i < 3; i++){ //for loop will go through the first three lines of 
 //
 
 
-delete res;
-delete stmt;
-delete con;
-delete con;
+delete res; //deletes res pointer
+delete stmt; //deletes stmt pointer
+delete con; //deletes con pointer
