@@ -3,6 +3,7 @@
 #include <cppconn/statement.h>
 #include <cppconn/resultset.h>
 #include <cppconn/exception.h>
+#include <libmysqlcppconn.lib>
 
 #include <iostream>
 
@@ -16,17 +17,40 @@ stmt = con->createStatement();
 //your MySQL database is named the same as your username
 stmt->execute("USE" 348s25_d020c696);
 
-stmt->execute("SELECT StdFirstName, StdLastName FROM Student WHERE Student.StdMajor = "IS";");
+stmt->execute("SELECT StdFirstName, StdLastName \
+    FROM Student \
+    WHERE Student.StdMajor = "IS";");
 
 //
-stmt->execute("SELECT s.StdFirstName, s.StdLastName FROM Student s JOIN (SELECT StdNo, COUNT(DISTINCT OfferNo) AS course_count FROM Enrollment GROUP BY StdNo HAVING COUNT(DISTINCT OfferNo) > 2) e ON s.StdNo = e.StdNo;");
+stmt->execute("SELECT s.StdFirstName, s.StdLastName \
+    FROM Student s \
+    JOIN ( \
+        SELECT StdNo, \
+        COUNT(DISTINCT OfferNo) AS course_count \
+        FROM Enrollment \
+        GROUP BY StdNo \
+        HAVING COUNT(DISTINCT OfferNo) > 2) e ON s.StdNo = e.StdNo;");
 
 //
-
-stmt->execute("SELECT count(FacHireDate), FacDept FROM Faculty WHERE FacDept = "PHY" HAVING COUNT(2019-08-26 - FacHireDate) > 5;");
+stmt->execute("SELECT s.StdMajor AS Department, \
+    COUNT(DISTINCT e.StdNo) AS TotalStudents \
+    FROM Enrollment e \
+    JOIN Student s ON e.StdNo = s.StdNo \
+    GROUP BY s.StdMajor \
+    HAVING COUNT(DISTINCT e.StdNo) > 50;");
+//
+stmt->execute("SELECT count(FacHireDate), FacDept \
+    FROM Faculty \
+    WHERE FacDept = "PHY" \
+    HAVING COUNT(2019-08-26 - FacHireDate) > 5;");
 
 //
-
+stmt->execute("SELECT c.CourseNo, c.CrsDesc AS CourseName \
+FROM Course c \
+JOIN Offering o ON c.CourseNo = o.CourseNo \
+JOIN Faculty f ON o.FacNo = f.FacNo \
+WHERE c.CrsDesc LIKE '%Data%' AND f.FacLastName = 'Johnson';")
+//
 int a = 0;
 res = stmt->executeQuery("SELECT stdGPA FROM Student ORDER BY stdGPA DESC;");
 while(res->next()){
