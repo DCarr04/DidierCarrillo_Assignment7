@@ -136,6 +136,7 @@ stmt->execute("SELECT * FROM Student;"); //displays all information in Student t
 //Updates Student table by setting the StdCity to Overland Park and the StdZip to 66204 where a student's last name is Norbert
 stmt->execute("UPDATE Student SET StdCity = 'Overland Park', StdZip = '66204' WHERE StdLastName = 'Norbert';");
 stmt->execute("SELECT * FROM Student;"); //displays all information in Student table
+
 delete res; //deletes res pointer
 delete stmt; //deletes stmt pointer
 delete con; //deletes con pointer
