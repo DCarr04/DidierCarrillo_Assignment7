@@ -133,7 +133,9 @@ for(int i = 0; i < 3; i++){ //for loop will go through the first three lines of 
 stmt->execute("INSERT INTO Student(StdNo, StdFirstName, StdLastName, StdCity, StdState, StdZip, StdClass, StdMajor, StdGPA) VALUES('888-88-8888', 'Alice', 'Smith', 'Topeka', 'KS', '66610', 'JR', 'CS', 3.85);");
 stmt->execute("SELECT * FROM Student;"); //displays all information in Student table
 
-
+//Updates Student table by setting the StdCity to Overland Park and the StdZip to 66204 where a student's last name is Norbert
+stmt->execute("UPDATE Student SET StdCity = 'Overland Park', StdZip = '66204' WHERE StdLastName = 'Norbert';");
+stmt->execute("SELECT * FROM Student;"); //displays all information in Student table
 delete res; //deletes res pointer
 delete stmt; //deletes stmt pointer
 delete con; //deletes con pointer
